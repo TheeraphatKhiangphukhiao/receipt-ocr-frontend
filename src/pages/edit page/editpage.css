@@ -1,0 +1,160 @@
+/* img {
+    width: 400px;
+    margin-top: 4%;
+    border-style: solid;
+    border-color: rgb(22, 49, 114, 1);
+} */
+/* .div {
+    display: flex;
+    flex-direction: column;
+} */
+
+
+
+/* สร้างเลย์เอาต์ของแต่ละรายการในรูปแบบแนวนอน */
+.editpage_body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+
+
+/* กำหนดขนาดของแต่ละคอลัมน์ */
+.editpage_body_show1_buttoms_and_image {
+     /* flex: 1; ทำให้แต่ละคอลัมน์มีขนาดเท่ากัน 
+    padding: 30px;  เพิ่มระยะห่างระหว่างคอลัมน์ 
+    border: 1px solid #ddd;  เพิ่มเส้นขอบสำหรับแต่ละคอลัมน์ 
+    text-align: center;  จัดการยอดข้อความให้แสดงตรงกลาง  */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    margin-left: 1%;
+}
+.editpage_body_show1_buttoms {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 3%;
+    justify-content: space-evenly;
+}
+.editpage_body_show1_image {
+    width: 400px;
+    margin-top: 3%;
+    border-style: solid;
+    border-color: rgb(22, 49, 114, 1);
+}
+
+
+
+
+
+
+
+
+.editpage_body_show2_buttoms_and_spreadsheet {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-right: 1%;
+    /* background-color: aquamarine; */
+    width: 100%;
+}
+
+
+.editpage_body_show2_buttoms {
+    display: flex;
+    flex-direction: row;
+    /* background-color: blueviolet; */
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.editpage_body_show2_buttoms_addRow_save_dleteRow, .editpage_body_show2_buttoms_addColumn_save_dleteColumn {
+    display: flex;
+    flex-direction: column;
+}
+.editpage_body_show2_buttoms_addRow_addColumn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(22, 49, 114, 1);
+    border-radius: 30px;
+}
+.editpage_body_show2_buttoms_deleteRow_deleteColumn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(215, 87, 59, 1);
+    border-radius: 30px;
+    margin-top: 30%;
+}
+.editpage_body_show2_buttoms_save {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba(70, 119, 87, 1);
+    border-radius: 30px;
+    /* margin-left: 10%; */
+}
+
+
+
+.editpage_body_show2_spreadsheet {
+    max-height: 500px; /* ปรับความสูงสูงสุดของกรอบย่อยตามต้องการ */
+    max-width: 1050px;
+    /* width: 100px; */
+    overflow: auto; /* เพิ่มแถบเลื่อนเมื่อข้อมูลเต็มกรอบ */
+
+
+}
+
+
+.editpage_body_show2_custom_spreadsheet {
+    width: 100%;
+    table-layout: fixed;
+    font-family: "Kanit";
+}
+.editpage_body_show2_custom_spreadsheet th,
+.editpage_body_show2_custom_spreadsheet td {
+    /* เพิ่มระยะห่างของข้อมูลในตาราง */
+    /* padding: 5px; */
+    text-align: center; /* จัดข้อความในตารางให้อยู่ตรงกลาง */
+}
+
+
+.editpage_body_show2_spreadsheet_loading {
+    height: 200px;
+    margin-top: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* .custom_spreadsheet_wrapper {
+    max-height: 400px;  ปรับความสูงสูงสุดของกรอบย่อยตามต้องการ 
+    max-width: 1000px;
+     width: 900px; 
+    overflow: auto;  เพิ่มแถบเลื่อนเมื่อข้อมูลเต็มกรอบ 
+    background-color: brown;
+}
+span {
+    font-family: "Kanit";
+}
+.custom_button1 {
+    background-color: rgb(25, 25, 100);
+}
+.custom_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+} */
