@@ -24,7 +24,7 @@ export class ReceiptService {
 
 
     const receipt_data: ReceiptGetResponse = response.data;
-    return receipt_data;
+    return receipt_data; //ทำการส่งข้อมูลส่วนสำคัญของรูปภาพใบเสร็จกลับไป
   }
 
 
