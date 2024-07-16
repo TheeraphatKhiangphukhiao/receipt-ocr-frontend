@@ -85,29 +85,31 @@ export default function EditPage() {
 
 
   async function saveDataAsCSV() {
+
     console.log(dataExcel);
     const response = await receiptService.save_data_to_csv(dataExcel);
-    //console.log(response.data);
+    console.log(response);
 
-    // const bom = "\uFEFF";
-    // const blob = new Blob([bom + response.data], {
-    //   type: "text/csv;charset=utf-8",
-    // });
 
-    // const url = window.URL.createObjectURL(blob);
-    // const link = document.createElement("a");
-    // link.href = url;
-    // link.download = "Receipt.csv";
-    // link.type = "text/csv;charset=utf-8";
+    const bom = "\uFEFF";
+    const blob = new Blob([bom + response], {
+      type: "text/csv;charset=utf-8",
+    });
 
-    // document.body.appendChild(link);
-    // link.click();
-    // document.body.removeChild(link);
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "Receipt.csv";
+    link.type = "text/csv;charset=utf-8";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   useEffect(() => {
         const loadDataAsync = async () => {
-          const response = await receiptService.getBigCReceiptInformation(
+          const response = await receiptService.extract_receipt_information(
             selectedImage
           );
 

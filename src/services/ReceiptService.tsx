@@ -1,52 +1,47 @@
 import axios from "axios";
-import { ReceiptBigCGetResponse } from "../model/ReceiptBigCGetResponse";
-import { ReceiptLotusGetResponse } from "../model/ReceiptLotusGetResponse";
+import { ReceiptGetResponse } from "../model/ReceiptGetResponse"; //นำเข้าโมเดลสำหรับเก็บข้อมูลส่วนสำคัญเพื่อนำไปเเสดงผลเเละเขียนไฟล์ csv
 
-const HOST: string = "https://receipt-ocr-app.onrender.com";
+
+const HOST: string = "https://receipt-ocr-app.onrender.com"; 
+
 
 export class ReceiptService {
 
-  async getBigCReceiptInformation(imageFile: File) {
-    const url = HOST + "/index/receipt/ocr";
+
+  //ฟังก์ชั่นสำหรับหาข้อมูลส่วนสำคัญของรูปภาพใบเสร็จรับเงิน หรือ ใบกำกับภาษี
+  async extract_receipt_information(imageFile: File) {
+
+    const url = HOST + "/index/receipt/ocr"; //สร้างเส้นทางสำหรับส่งรูปภาพไปประมวลผลที่ Server
+
     const formData = new FormData();
     formData.append("file", imageFile);
+
     const response = await axios.post(url, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
-    //console.log(response.data);
-    const receiptBigC: ReceiptBigCGetResponse = response.data;
-    return receiptBigC;
+
+
+    const receipt_data: ReceiptGetResponse = response.data;
+    return receipt_data;
   }
 
-  async getLotusReceiptInformation(imageFile: File) {
-    const url = HOST + "/lotus/receipt/ocr";
-    const formData = new FormData();
-    formData.append("file", imageFile);
-    const response = await axios.post(url, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    //console.log(response.data);
-    const receiptLotus: ReceiptLotusGetResponse = response.data;
-    return receiptLotus;
-  }
 
-  
   //เนื่องจากข้อมูลที่ส่งเข้ามาใน dataExcel เป็น Array 2D เเบบ [[{},{}][{},{}]] โดยจะเก็บข้อมูลทีละ row ที่มีข้อมูล json เเต่ละ column อยู่ข้างใน
-  async save_data_to_csv(dataExcel: string[][]) {
+  //eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async save_data_to_csv(dataExcel: any[][]) {
 
-    const result: string[] = []; //ทำการประกาศตัวเเปร array 1D ที่มีชนิดเป็น string
+    const result: Array<Record<string, string>> = []; //ทำการประกาศตัวเเปร array 1D ที่มีชนิดเป็น Record<string, string>
     console.log(result);
     console.log(dataExcel);
 
-    dataExcel.forEach((row: string[]) => { //วนลูปนำเเต่ละ row ออกมาโดยจะเป็น Array ตัวที่ 2 ที่มีข้อมูล json เเต่ละ column อยู่ข้างใน
+
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    dataExcel.forEach((row: any[]) => { //วนลูปนำเเต่ละ row ออกมาโดยจะเป็น Array ตัวที่ 2 ที่มีข้อมูล json เเต่ละ column อยู่ข้างใน
 
       console.log(row);
       const obj: Record<string, string> = {}; //ประกาศตัวเเปร json
-      
       
       //eslint-disable-next-line @typescript-eslint/no-explicit-any
       row.forEach((item: any, index: number) => { //วนลูปนำข้อมูลเเต่ละ column ที่เป็น json ของเเต่ละ row ออกมาใช้งาน
@@ -55,26 +50,20 @@ export class ReceiptService {
         obj[key] = item.value;
 
       });
-      const json = JSON.stringify(obj); //ทำการเเปลง obj ไปเป็น json string ก่อนที่จะเพิ่มลงใน result
-      result.push(json); //ทำการสร้าง List ที่เก็บข้อมูล json หลายๆตัว โดยที่ json เเต่ละตัวนั้นคือข้อมูลของเเต่ละ row
+  
+      result.push(obj); //ทำการสร้าง List ที่เก็บข้อมูล json หลายๆตัว โดยที่ json เเต่ละตัวนั้นคือข้อมูลของเเต่ละ row
 
     });
     console.log(result);
-    
-    // // วนลูปผ่านแต่ละแถวของข้อมูล Excel
-    // dataExcel.forEach((row: any[]) => {
-    //   const obj: any = {};
-    //   row.forEach((item: any, index: number) => {
-    //     const key = `item${index + 1}`;
-    //     obj[key] = item.value; // เปลี่ยนจาก item เป็น item.value
-    //   });
-    //   result.push(obj);
-    // });
+    console.log({result: result});
 
-    // const url = HOST + "/upload/save/receipt";
-    // const response = await axios.post(url, {
-    //   result: result
-    // });
-    // return response;
+
+    const url = HOST + "/upload/save/receipt"; //สร้างเส้นทางสำหรับส่งข้อมูลส่วนสำคัญไปเขียนเป็นไฟล์ csv
+    const response = await axios.post(url, {
+      result: result
+    });
+
+
+    return response.data; //ทำการส่งข้อมูลที่เป็นไฟล์ csv กลับไปให้กับผู้เรียกใช้ เพื่อดาวน์โหลดไฟล์ csv
   }
 }
