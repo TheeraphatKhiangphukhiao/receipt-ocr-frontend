@@ -24,7 +24,8 @@
     gap: 10px; /* เพื่อเพิ่มระยะห่างระหว่างองค์ประกอบ */
 }
 
-/* Media Queries */
+
+/* ใช้ Media Queries เพื่อตั้งค่า flex-direction: row สำหรับหน้าจอขนาดใหญ่ min-width: 600px เเละปรับขนาดของภาพเเละตารางตามความเหมาะสม */
 @media (min-width: 600px) {
     .inline-div {
         flex-direction: row; /* Switch to row layout for larger screens */

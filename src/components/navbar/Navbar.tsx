@@ -4,15 +4,21 @@ import "./navbar.css";
 import logo from "../../assets/logo.png";
 
 export default function Navbar() {
-  // สำหรับเปลี่ยนหน้า
-  const navigate = useNavigate();
 
-  //=========================================================== funtion เปลี่ยนไปหน้า Intro
+  const navigate = useNavigate(); //สำหรับเปลี่ยนหน้า
+
+
+  //ฟังก์ชั่นสำหรับ router ไปยังหน้า intro page
   function navigateToIntroPage() {
     navigate("/");
   }
 
-  //===========================================================
+  //ฟังก์ชั่นสำหรับ router ไปยังหน้า create page
+  function navigateToCreatePage() {
+    navigate("/create");
+  }
+
+  
   return (
     <>
       {/* Navbar */}
@@ -25,9 +31,16 @@ export default function Navbar() {
 
               <button
                 className="Navbar_toolbar_button"
-                onClick={navigateToIntroPage}
+                onClick={()=>{ navigateToIntroPage(); }}
               >
                 Intro
+              </button>
+
+              <button
+                className="Navbar_toolbar_button"
+                onClick={()=>{ navigateToCreatePage(); }}
+              >
+                Create
               </button>
             </div>
           </Toolbar>
