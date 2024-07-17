@@ -5,9 +5,10 @@ import { useEffect, useState } from "react";
 import Spreadsheet from "react-spreadsheet";
 import { Button, Container } from "@mui/material";
 import "./editpage.css";
-import DownloadIcon from '@mui/icons-material/Download'; //นำ icon รูป Download เข้ามาเพื่อนำไปใช้กับ button
+import DownloadIcon from "@mui/icons-material/Download"; //นำไอคอนรูป Download เข้ามาเพื่อนำไปใช้กับ button
 // import { useNavigate } from "react-router-dom";
 // import React from "react";
+
 
 export default function EditPage() {
   const location = useLocation();
@@ -40,8 +41,10 @@ export default function EditPage() {
     //[{ value: "A" }, { value: "B" }, { value: "C" }, { value: "D" }, { value: 'E' }],
   ]);
 
+
   //ฟังก์ชั่นสำหรับนำข้อมูลส่วนสำคัญของใบเสร็จไปเขียนเป็นไฟล์ csv เเล้วดาวน์โหลด
   async function save_data_as_csv() {
+
     console.log(dataExcel);
     const response = await receiptService.save_data_to_csv(dataExcel); //ทำการส่งข้อมูลไปเขียนไฟล์ เเล้วรับไฟล์ csv กลับมา
     console.log(response);
@@ -62,9 +65,10 @@ export default function EditPage() {
     document.body.removeChild(link);
   }
 
+
   //useEffect จะทำงานทุกครั้งเมื่อมีการ rerender
   useEffect(() => {
-    console.log("Hello useEffect !!");
+    console.log("Hello useEffect !!!");
 
     const loadDataAsync = async () => {
       const response = await receiptService.extract_receipt_information(
@@ -92,38 +96,46 @@ export default function EditPage() {
     loadDataAsync();
   }, [selectedImage]); //dependencies array กำหนดว่าฟังก์ชั่นนี้จะทำงานเมื่อ selectedImage มีการเปลี่ยนเเปลง
 
+
   return (
     <>
       <Container fixed sx={{ mt: 5 }}>
         <div className="inline-div">
-          <img className="responsive-image" src={URL.createObjectURL(selectedImage)} alt="" />
+          <img
+            className="responsive-image"
+            src={URL.createObjectURL(selectedImage)}
+            alt=""
+          />
 
           <div className="custom-spreadsheet-one">
-            {dataExcel.length > 0 ? (
-              <Spreadsheet
-                className="custom-spreadsheet-two"
-                data={dataExcel}
-              />
-            ) : (
-              <div></div>
-            )}
+            <>
+              <div className="custom-spreadsheet-two">
+                {dataExcel.length > 0 ? (
+                  <Spreadsheet
+                    className="custom-spreadsheet-three"
+                    data={dataExcel}
+                  />
+                ) : (
+                  <div></div>
+                )}
+              </div>
+
+              <Button variant="contained" sx={{ fontFamily: "Kanit", mt: 3, width: "100%" }}
+                onClick={() => {
+                  save_data_as_csv();
+                }}
+              >
+                <DownloadIcon />
+                Download
+              </Button>
+
+              <Button variant="contained" sx={{ fontFamily: "Kanit", mt: 1, width: "100%" }}
+              >
+                Choose File
+              </Button>
+            </>
           </div>
-
         </div>
-
-        <Button
-          variant="contained"
-          sx={{
-            fontFamily: 'Kanit'
-          }}
-          onClick={() => {
-            save_data_as_csv();
-          }}
-        >
-          <DownloadIcon />
-          Download
-        </Button>
-
       </Container>
     </>
   );

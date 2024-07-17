@@ -8,13 +8,19 @@
 .custom-spreadsheet-one {
     max-width: 100%;
     max-height: 100%;
-    overflow: auto;
     flex-grow: 1; /* เพื่อให้คอมโพเนนต์นี้สามารถขยายได้ตามพื้นที่ที่เหลืออยู่ */
 }
 
-.custom-spreadsheet-two {
+.custom-spreadsheet-three {
     width: 100%;
     font-family: "Kanit";
+}
+
+.custom-spreadsheet-two {
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+    flex-grow: 1;
 }
 
 .inline-div {
