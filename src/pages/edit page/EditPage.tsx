@@ -12,6 +12,8 @@ import React from "react";
 
 
 export default function EditPage() {
+
+  let count : number = 0; //ประกาศตัวเเปรสำหรับนับจำนวนการทำงานของฟังก์ชั่น useEffect เพื่อไม่ให้มันทำงาน 2 ครั้งตอนเปิดมาหน้านี้
   const location = useLocation();
 
   const selectedImage = location.state.selectedImage; //ทำการรับรูปภาพที่ส่งมาจากหน้า CreatePage
@@ -84,33 +86,40 @@ export default function EditPage() {
 
   //useEffect จะทำงานทุกครั้งเมื่อมีการ rerender
   useEffect(() => {
-    console.log("Hello useEffect !!!");
 
-    const loadDataAsync = async () => {
-      const response = await receiptService.extract_receipt_information(
-        selectedImage //ส่งรูปภาพไปเพื่อดึงข้อมูลส่วนสำคัญออกมา
-      );
+    if (count == 0) { //ถ้ามันเป็น 0 เเสดงว่ามันจะทำงานเป็นครั้งเเรก เเต่ถ้ามันมากกว่า 0 เเสดงว่ามันทำงานไปเเล้วจะไม่ให้มันทำงานซํ้าอีกรอบ
+      count++;
 
-      const maxColumns = Math.max(
-        ...response.result.map((item) => Object.keys(item).length)
-      );
+      console.log("count = " + count);
+      console.log("Hello useEffect !!! on EditPage");
 
-      //eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const newData = response.result.map((item: any) => {
-        const rowData = [];
+      const loadDataAsync = async () => {
+        const response = await receiptService.extract_receipt_information(
+          selectedImage //ส่งรูปภาพไปเพื่อดึงข้อมูลส่วนสำคัญออกมา
+        );
+  
+        const maxColumns = Math.max(
+          ...response.result.map((item) => Object.keys(item).length)
+        );
+  
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const newData = response.result.map((item: any) => {
+          const rowData = [];
+  
+          for (let i = 1; i <= maxColumns; i++) {
+            const key = `item${i}`;
+            rowData.push({ value: item[key] || "" });
+          }
+          return rowData;
+          
+        });
+  
+        setDataExcel(newData);
+      };
 
-        for (let i = 1; i <= maxColumns; i++) {
-          const key = `item${i}`;
-          rowData.push({ value: item[key] || "" });
-        }
-        return rowData;
-        
-      });
+      loadDataAsync();
+    }
 
-      setDataExcel(newData);
-    };
-
-    loadDataAsync();
   }, [selectedImage]); //dependencies array กำหนดว่าฟังก์ชั่นนี้จะทำงานเมื่อ selectedImage มีการเปลี่ยนเเปลง
 
 
