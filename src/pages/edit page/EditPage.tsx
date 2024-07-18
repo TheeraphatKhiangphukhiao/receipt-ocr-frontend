@@ -6,8 +6,9 @@ import Spreadsheet from "react-spreadsheet";
 import { Button, Container } from "@mui/material";
 import "./editpage.css";
 import DownloadIcon from "@mui/icons-material/Download"; //นำไอคอนรูป Download เข้ามาเพื่อนำไปใช้กับ button
-// import { useNavigate } from "react-router-dom";
-// import React from "react";
+import UploadFileIcon from '@mui/icons-material/UploadFile';
+import { useNavigate } from "react-router-dom";
+import React from "react";
 
 
 export default function EditPage() {
@@ -18,18 +19,24 @@ export default function EditPage() {
   const receiptService = new ReceiptService(); //ทำการสร้าง instance ของ ReceiptService เพื่อเรียกใช้งานฟังก์ชั่น
 
   //create hook
-  // const navigate = useNavigate(); //useNavigate hook
+  const navigate = useNavigate(); //useNavigate hook
 
-  // const handleFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = event.target.files && event.target.files[0];
 
-  //   if (file) {
-  //     setDataExcel([]);
-  //     navigate("/edit", {
-  //       state: { selectedImage: file },
-  //     });
-  //   }
-  // };
+  //ฟังก์ชั่นนี้รับอาร์กิวเมนต์ event ที่เป็นการเปลี่ยนเเปลงจาก input ชนิด file ใน React
+  const handleFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+
+    const file = event.target.files && event.target.files[0]; //เข้าถึงไฟล์ที่ถูกอัปโหลดใน input
+
+    if (file) { //ตรวจสอบว่าได้เลือกไฟล์หรือไม่
+
+      setDataExcel([]); //ทุกครั้งที่มีการเลือกไฟล์รูปภาพใหม่ ให้ล้างข้อมูลใน spreadsheet ให้เป็น array ว่างเสมอเพื่อรอการประมวลผลภาพใหม่
+      navigate("/edit", { 
+        state: { selectedImage: file },
+      });
+    }
+
+  };
+
 
   //ทำการประกาศ data excel โดยมีชนิดข้อมูล เป็น array 2D เเละข้างในเป็น json ที่มี key คือ value เเละค่าของมันเป็น string
   const [dataExcel, setDataExcel] = useState<{ value: string }[][]>([
@@ -40,6 +47,15 @@ export default function EditPage() {
     //[{ value: "A" }, { value: "B" }, { value: "C" }, { value: "D" }, { value: 'E' }],
     //[{ value: "A" }, { value: "B" }, { value: "C" }, { value: "D" }, { value: 'E' }],
   ]);
+
+
+  //ฟังก์ชั่นสำหรับ update ข้อมูลใน spreadsheet ทุกครั้งที่มีการคีย์ข้อมูลใหม่
+  //eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function setNewData(newData : any) {
+    console.log("Hello setNewData !!!");
+
+    setDataExcel(newData);
+  }
 
 
   //ฟังก์ชั่นสำหรับนำข้อมูลส่วนสำคัญของใบเสร็จไปเขียนเป็นไฟล์ csv เเล้วดาวน์โหลด
@@ -88,6 +104,7 @@ export default function EditPage() {
           rowData.push({ value: item[key] || "" });
         }
         return rowData;
+        
       });
 
       setDataExcel(newData);
@@ -101,12 +118,7 @@ export default function EditPage() {
     <>
       <Container fixed sx={{ mt: 5 }}>
         <div className="inline-div">
-          <img
-            className="responsive-image"
-            src={URL.createObjectURL(selectedImage)}
-            alt=""
-          />
-
+          <img className="responsive-image" src={URL.createObjectURL(selectedImage)} alt="" />
           <div className="custom-spreadsheet-one">
             <>
               <div className="custom-spreadsheet-two">
@@ -114,24 +126,26 @@ export default function EditPage() {
                   <Spreadsheet
                     className="custom-spreadsheet-three"
                     data={dataExcel}
+                    onChange={setNewData}
+                    onKeyDown={(event) => console.log(event.key)}
                   />
                 ) : (
                   <div></div>
                 )}
               </div>
 
-              <Button variant="contained" sx={{ fontFamily: "Kanit", mt: 3, width: "100%" }}
+              <Button variant="contained" startIcon={<DownloadIcon />} sx={{ fontFamily: "Kanit", mt: 3, width: "100%" }}
                 onClick={() => {
                   save_data_as_csv();
                 }}
               >
-                <DownloadIcon />
                 Download
               </Button>
 
-              <Button variant="contained" sx={{ fontFamily: "Kanit", mt: 1, width: "100%" }}
+              <Button variant="contained" startIcon={<UploadFileIcon />} component="label" sx={{ fontFamily: "Kanit", mt: 1, width: "100%" }}
               >
-                Choose File
+                Upload file
+                <input type="file" hidden onChange={handleFile} />
               </Button>
             </>
           </div>
