@@ -15,6 +15,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 export default function EditPage() {
 
   let count : number = 0; //ประกาศตัวเเปรสำหรับนับจำนวนการทำงานของฟังก์ชั่น useEffect เพื่อไม่ให้มันทำงาน 2 ครั้งตอนเปิดมาหน้านี้
+  
   const location = useLocation();
 
   const selectedImage = location.state.selectedImage; //ทำการรับรูปภาพที่ส่งมาจากหน้า CreatePage
