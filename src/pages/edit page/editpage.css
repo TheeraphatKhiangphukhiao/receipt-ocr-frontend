@@ -21,7 +21,18 @@
     max-height: 100%;
     overflow: auto;
     flex-grow: 1;
+    border: 2px solid rgb(179, 179, 179);
 }
+
+.custom-loading-spreadsheet {
+    display: flex;
+    flex-direction: column; /* เพื่อให้คอมโพเนนต์เป็น layout เเบบคอลัมน์สำหรับหน้าจอขนาดเล็ก */
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    border: 2px solid rgb(179, 179, 179);
+}
+
 
 .inline-div {
     display: flex;

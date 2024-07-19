@@ -9,6 +9,7 @@ import DownloadIcon from "@mui/icons-material/Download"; //นำไอคอน
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 export default function EditPage() {
@@ -130,18 +131,23 @@ export default function EditPage() {
           <img className="responsive-image" src={URL.createObjectURL(selectedImage)} alt="" />
           <div className="custom-spreadsheet-one">
             <>
-              <div className="custom-spreadsheet-two">
+              
                 {dataExcel.length > 0 ? (
-                  <Spreadsheet
-                    className="custom-spreadsheet-three"
-                    data={dataExcel}
-                    onChange={setNewData}
-                    onKeyDown={(event) => console.log(event.key)}
-                  />
+                  <div className="custom-spreadsheet-two">
+                    <Spreadsheet
+                      className="custom-spreadsheet-three"
+                      data={dataExcel}
+                      onChange={setNewData}
+                      onKeyDown={(event) => console.log(event.key)}
+                    />
+                  </div>
                 ) : (
-                  <div></div>
+                  <div className="custom-loading-spreadsheet">
+                    <CircularProgress />
+                  </div>
+                  
                 )}
-              </div>
+              
 
               <Button variant="contained" startIcon={<DownloadIcon />} sx={{ fontFamily: "Kanit", mt: 3, width: "100%" }}
                 onClick={() => {
