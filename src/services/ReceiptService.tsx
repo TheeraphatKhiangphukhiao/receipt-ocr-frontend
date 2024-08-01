@@ -2,7 +2,7 @@ import axios from "axios";
 import { ReceiptGetResponse } from "../model/ReceiptGetResponse"; //นำเข้าโมเดลสำหรับเก็บข้อมูลส่วนสำคัญเพื่อนำไปเเสดงผลเเละเขียนไฟล์ csv
 
 
-const HOST: string = "https://receipt-ocr-app.onrender.com"; 
+const HOST: string = "http://127.0.0.1:8000"; 
 
 
 export class ReceiptService {
@@ -58,7 +58,7 @@ export class ReceiptService {
     console.log({result: result});
 
 
-    const url = HOST + "/upload/save/receipt"; //สร้างเส้นทางสำหรับส่งข้อมูลส่วนสำคัญไปเขียนเป็นไฟล์ csv
+    const url = HOST + "/csvfile/save/receipt"; //สร้างเส้นทางสำหรับส่งข้อมูลส่วนสำคัญไปเขียนเป็นไฟล์ csv
     const response = await axios.post(url, {
       result: result
     });

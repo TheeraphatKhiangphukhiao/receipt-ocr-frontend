@@ -30,8 +30,8 @@ export default function CreatePage() {
         className="CreatePage_btn_import"
         sx={{
           borderRadius: '15px',
-          border: '3px solid rgba(22, 49, 114, 1)',
-          color: 'rgba(22, 49, 114, 1)',
+          border: '3px solid #317AC7',
+          color: '#317AC7',
           paddingTop: 4,
           paddingBottom: 4,
           paddingLeft: 10,

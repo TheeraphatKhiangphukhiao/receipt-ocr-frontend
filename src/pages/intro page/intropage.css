@@ -6,7 +6,7 @@
 }
 .IntroPage_body_h1 {
     font-size: 45px;
-    color: rgba(22, 49, 114, 1);
+    color: #707D9D;
     margin: 0px;
 }
 .IntroPage_body_texts {
@@ -16,10 +16,10 @@
 }
 .IntroPage_body_p {
     margin: 0;
-    color: rgba(22, 49, 114, 1);
+    color: #707D9D;
 }
 .IntroPage_body_btn {
-    background-color: rgba(22, 49, 114, 1);
+    background-color: #317AC7;
     color: white;
 }
 

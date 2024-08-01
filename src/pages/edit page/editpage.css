@@ -3,7 +3,7 @@
     width: 100%;
     height: auto; /* กำหนดให้ความสูงของภาพเป็น auto */
     max-width: 600px; /* กำหนดขนาดสูงสุดของรูปภาพเพื่อป้องกันไม่ให้ภาพใหญ่เกินไป */
-    border: 2px solid rgb(22, 49, 114, 1);
+    border: 2px solid #317AC7;
 }
 
 .custom-spreadsheet-one {
@@ -22,7 +22,7 @@
     max-height: 100%;
     overflow: auto;
     flex-grow: 1;
-    border: 2px solid rgb(22, 49, 114, 1);
+    border: 2px solid #317AC7;
 }
 
 .custom-loading-spreadsheet {
@@ -30,7 +30,7 @@
     align-items: center;
     justify-content: center;
     height: 100px;
-    border: 2px solid rgb(22, 49, 114, 1);
+    border: 2px solid #317AC7;
 }
 
 

@@ -1,5 +1,5 @@
 .Navbar_toolbar {
-    background-color: rgba(22, 49, 114, 1);
+    background-color: #317AC7;
 }
 .Navbar_toolbar_content{
     width: 25%;
@@ -8,7 +8,7 @@
     justify-content: space-around;
 }
 .Navbar_toolbar_button {
-    background-color: rgba(22, 49, 114, 1);
+    background-color: #317AC7;
     color: white;
 }
 
