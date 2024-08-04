@@ -47,9 +47,7 @@ export default function EditPage() {
     //[{ value: "A" }, { value: "B" }, { value: "C" }, { value: "D" }, { value: 'E' }],
     //[{ value: "A" }, { value: "B" }, { value: "C" }, { value: "D" }, { value: 'E' }],
     //[{ value: "A" }, { value: "B" }, { value: "C" }, { value: "D" }, { value: 'E' }],
-    //[{ value: "A" }, { value: "B" }, { value: "C" }, { value: "D" }, { value: 'E' }],
-    //[{ value: "A" }, { value: "B" }, { value: "C" }, { value: "D" }, { value: 'E' }],
-    //[{ value: "A" }, { value: "B" }, { value: "C" }, { value: "D" }, { value: 'E' }],
+    //[{ value: "A" }, { value: "B" }, { value: "C" }, { value: "D" }, { value: 'E' }]
   ]);
 
 
@@ -77,7 +75,7 @@ export default function EditPage() {
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "Receipt.csv";
+    link.download = "receipt.csv";
     link.type = "text/csv;charset=utf-8";
 
     document.body.appendChild(link);
@@ -89,7 +87,7 @@ export default function EditPage() {
   //useEffect จะทำงานทุกครั้งเมื่อมีการ rerender
   useEffect(() => {
 
-    if (count == 0) { //ถ้ามันเป็น 0 เเสดงว่ามันจะทำงานเป็นครั้งเเรก เเต่ถ้ามันมากกว่า 0 เเสดงว่ามันทำงานไปเเล้วจะไม่ให้มันทำงานซํ้าอีกรอบ
+    if (count === 0) { //ถ้ามันเป็น 0 เเสดงว่ามันจะทำงานเป็นครั้งเเรก เเต่ถ้ามันมากกว่า 0 เเสดงว่ามันทำงานไปเเล้วจะไม่ให้มันทำงานซํ้าอีกรอบ
       count++;
 
       console.log("count = " + count);
@@ -99,24 +97,47 @@ export default function EditPage() {
         const response = await receiptService.extract_receipt_information(
           selectedImage //ส่งรูปภาพไปเพื่อดึงข้อมูลส่วนสำคัญออกมา
         );
-  
-        const maxColumns = Math.max(
-          ...response.result.map((item) => Object.keys(item).length)
-        );
-  
-        //eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const newData = response.result.map((item: any) => {
-          const rowData = [];
-  
-          for (let i = 1; i <= maxColumns; i++) {
-            const key = `item${i}`;
-            rowData.push({ value: item[key] || "" });
-          }
-          return rowData;
-          
-        });
-  
-        setDataExcel(newData);
+
+        const checkResult = response.result.length; //ดึงความยาวของ result ออกมาเช็คว่าเป็น array ว่างหรือไม่
+
+        //ถ้า result มีความยาวไม่เท่ากับ 0 เเสดงว่ามีข้อมูล เเละรูปภาพนั้นถูกต้อง
+        if (checkResult !== 0) { //การใช้ === หรือ !== ในภาษา typescript จะไม่ใช่เเค่การเช็คว่าข้อมูลเหมือนกันไหมเเต่จะเช็คชนิดข้อมูลด้วย ว่าตรงกันไหม
+
+          const maxColumns = Math.max(
+            ...response.result.map((item) => Object.keys(item).length)
+          );
+    
+          //eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const newData = response.result.map((item: any) => {
+            const rowData = [];
+    
+            for (let i = 1; i <= maxColumns; i++) {
+              const key = `item${i}`;
+              rowData.push({ value: item[key] || "" });
+            }
+            return rowData;
+            
+          });
+
+          console.log(newData);
+    
+          setDataExcel(newData);
+
+        } else { //ถ้าความยาวของ result เท่ากับ 0 เเสดงว่ารูปภาพที่ส่งเข้ามาในระบบไม่ถูกต้อง
+
+          const data_is_empty = [ //เมื่อรูปภาพไม่ถูกต้อง ทำการกำหนดข้อมูลเป็นค่าว่างทั้งหมด
+            [{ value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }],
+            [{ value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }],
+            [{ value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }],
+            [{ value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }]
+          ];
+          console.log('invalid file');
+          console.log(response.result);
+
+          confirm('รูปภาพไม่ถูกต้อง กรุณาอัปโหลดรูปภาพใบกำกับภาษีรูปเเบบเต็มของ (makro, bigc, lotus)');
+          setDataExcel(data_is_empty);
+
+        }
       };
 
       loadDataAsync();

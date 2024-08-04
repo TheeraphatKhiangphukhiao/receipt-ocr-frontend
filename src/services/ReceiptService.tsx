@@ -2,7 +2,7 @@ import axios from "axios";
 import { ReceiptGetResponse } from "../model/ReceiptGetResponse"; //นำเข้าโมเดลสำหรับเก็บข้อมูลส่วนสำคัญเพื่อนำไปเเสดงผลเเละเขียนไฟล์ csv
 
 
-const HOST: string = "http://127.0.0.1:8000"; 
+const HOST: string = "https://receipt-ocr-app-latest.onrender.com"; 
 
 
 export class ReceiptService {
