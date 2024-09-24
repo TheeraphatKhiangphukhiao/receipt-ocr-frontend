@@ -1,0 +1,42 @@
+.CreatePage_body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 650px;
+}
+
+
+.CreatePage_btn_import {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.CreatePage_body_image {
+    margin-top: 30px;
+}
+.CreatePage_body_image_and_name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.CreatePage_image {
+    width: 200px;
+    height: 200px;
+}
+
+
+
+/* ขนาดหน้าจอไม่เกอน คือ 1200 px */
+@media (max-width: 1200px) {
+    
+}
+/* ขนาดหน้าจอไม่เกอน คือ 750 px */
+@media (max-width: 750px) {
+    
+}
+/* ขนาดหน้าจอไม่เกิน คือ 600 px */
+@media (max-width: 600px) {
+    
+}

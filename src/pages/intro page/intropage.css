@@ -1,0 +1,47 @@
+.IntroPage_body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 630px;
+}
+.IntroPage_body_h1 {
+    font-size: 45px;
+    color: #707D9D;
+    margin: 0px;
+}
+.IntroPage_body_texts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.IntroPage_body_p {
+    margin: 0;
+    color: #707D9D;
+}
+.IntroPage_body_btn {
+    background-color: #317AC7;
+    color: white;
+}
+
+
+
+
+
+/* ขนาดหน้าจอไม่เกอน คือ 1200 px */
+@media (max-width: 1200px) {
+    .IntroPage_body_h1 {
+        font-size: 40px;
+    }
+}
+/* ขนาดหน้าจอไม่เกอน คือ 750 px */
+@media (max-width: 750px) {
+    .IntroPage_body_h1 {
+        font-size: 35px;
+    }
+}
+/* ขนาดหน้าจอไม่เกิน คือ 600 px */
+@media (max-width: 600px) {
+    .IntroPage_body_h1 {
+        font-size: 30px;
+    }
+}

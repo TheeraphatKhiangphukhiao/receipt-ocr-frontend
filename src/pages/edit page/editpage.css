@@ -1,0 +1,60 @@
+/* CSS */
+.responsive-image {
+    width: 100%;
+    height: auto; /* กำหนดให้ความสูงของภาพเป็น auto */
+    max-width: 600px; /* กำหนดขนาดสูงสุดของรูปภาพเพื่อป้องกันไม่ให้ภาพใหญ่เกินไป */
+    border: 1px solid #cfcfcf;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.custom-spreadsheet-one {
+    max-width: 100%;
+    max-height: 100%;
+    flex-grow: 1; /* เพื่อให้คอมโพเนนต์นี้สามารถขยายได้ตามพื้นที่ที่เหลืออยู่ */
+}
+
+.custom-spreadsheet-three {
+    width: 100%;
+    font-family: "Kanit";
+}
+
+.custom-spreadsheet-two {
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+    flex-grow: 1;
+}
+
+.custom-loading-spreadsheet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+
+.inline-div {
+    display: flex;
+    flex-direction: column; /* เพื่อให้คอมโพเนนต์เป็น layout เเบบคอลัมน์สำหรับหน้าจอขนาดเล็ก */
+    align-items: center;
+    gap: 10px; /* เพื่อเพิ่มระยะห่างระหว่างองค์ประกอบ */
+}
+
+
+/* ใช้ Media Queries เพื่อตั้งค่า flex-direction: row สำหรับหน้าจอขนาดใหญ่ min-width: 600px เเละปรับขนาดของภาพเเละตารางตามความเหมาะสม */
+@media (min-width: 600px) {
+    .inline-div {
+        flex-direction: row; /* Switch to row layout for larger screens */
+        align-items: flex-start;
+    }
+
+    .responsive-image {
+        width: 40%; /* 40% width on larger screens */
+    }
+
+    .custom-spreadsheet-one {
+        max-width: 60%; /* 60% width on larger screens */
+    }
+
+}
