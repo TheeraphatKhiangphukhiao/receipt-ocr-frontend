@@ -5,6 +5,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import IntroPage from "./pages/intro page/IntroPage";
 import CreatePage from "./pages/create page/CreatePage";
 import EditPage from "./pages/edit page/EditPage";
+import FooterPage from "./components/footer/footer";
+
 
 function App() {
   //=========================================================
@@ -36,6 +38,7 @@ function App() {
       {/* CssBaseline คือ ทำไห้ส่วนต่างๆ ชิดหน้าต่างทางซ้าย */}
       <CssBaseline />
       <RouterProvider router={routers} />
+      <FooterPage />
     </>
   );
 }

@@ -2,11 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 630px;
+    height: 100vh;
+    background-color: #66757F;
 }
 .IntroPage_body_h1 {
-    font-size: 45px;
-    color: #707D9D;
+    font-size: 50px;
+    color: #FFFFFF;
     margin: 0px;
 }
 .IntroPage_body_texts {
@@ -16,32 +17,52 @@
 }
 .IntroPage_body_p {
     margin: 0;
-    color: #707D9D;
+    color: #FFFFFF;
+    font-size: 25px;
 }
 .IntroPage_body_btn {
-    background-color: #317AC7;
-    color: white;
+    background-color: #FF9900;
+    color: #292F33;
+    width: 200px;
 }
 
 
 
 
 
-/* ขนาดหน้าจอไม่เกอน คือ 1200 px */
-@media (max-width: 1200px) {
+/* ขนาดหน้าจอไม่เกิน คือ 1200 px */
+@media (max-width: 1300px) {
     .IntroPage_body_h1 {
-        font-size: 40px;
+        font-size: 50px;
+    }
+    .IntroPage_body_p {
+        font-size: 27px;
     }
 }
 /* ขนาดหน้าจอไม่เกอน คือ 750 px */
 @media (max-width: 750px) {
     .IntroPage_body_h1 {
-        font-size: 35px;
+        font-size: 40px;
+    }
+    .IntroPage_body_p {
+        font-size: 25px;
     }
 }
 /* ขนาดหน้าจอไม่เกิน คือ 600 px */
 @media (max-width: 600px) {
     .IntroPage_body_h1 {
-        font-size: 30px;
+        font-size: 35px;
+    }
+    .IntroPage_body_p {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .IntroPage_body_h1 {
+        font-size: 33px;
+    }
+    .IntroPage_body_p {
+        font-size: 13px;
     }
 }

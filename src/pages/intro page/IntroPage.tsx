@@ -14,18 +14,14 @@ export default function IntroPage() {
     <>
       <div className="IntroPage_body" style={{ fontFamily: 'Kanit' }}>
         <div className="IntroPage_body_texts">
-          <h1 className="IntroPage_body_h1">The website converts receipt</h1>
-          <h1 className="IntroPage_body_h1">text using optical character</h1>
-          <h1 className="IntroPage_body_h1">recognition</h1>
-
+          <h1 className="IntroPage_body_h1">Receipt Text OCR</h1>
           <br />
 
           <p className="IntroPage_body_p">
             ช่วยให้คุณสามารถแปลงข้อมูลที่อยู่ในภาพใบเสร็จชำระเงิน
           </p>
-          <p className="IntroPage_body_p">ให้มาอยู่ในรูปแบบไฟล์ csv</p>
-          <p className="IntroPage_body_p">ได้อย่างง่ายดาย</p>
-
+          <p className="IntroPage_body_p">ให้มาอยู่ในรูปแบบไฟล์ Excel ได้อย่างง่ายดาย</p>
+          
           <br />
 
           <button className="IntroPage_body_btn" onClick={navigateToCreatePage}>

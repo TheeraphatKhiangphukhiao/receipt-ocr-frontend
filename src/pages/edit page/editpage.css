@@ -1,9 +1,15 @@
 /* CSS */
+.edit_page_body {
+    display: flex;
+    height: 100%;
+    background-color: #66757F;
+    min-height: 100vh;
+}
 .responsive-image {
     width: 100%;
     height: auto; /* กำหนดให้ความสูงของภาพเป็น auto */
     max-width: 600px; /* กำหนดขนาดสูงสุดของรูปภาพเพื่อป้องกันไม่ให้ภาพใหญ่เกินไป */
-    border: 1px solid #cfcfcf;
+    border: 2px solid #FF9900;
     border-radius: 4px;
     padding: 10px;
 }
@@ -19,6 +25,10 @@
     font-family: "Kanit";
 }
 
+.custom-spreadsheet-three td, .custom-spreadsheet-three th {
+    background-color: #FFFFFF;
+}
+
 .custom-spreadsheet-two {
     max-width: 100%;
     max-height: 100%;
@@ -31,6 +41,7 @@
     justify-content: center;
     align-items: center;
     height: 100px;
+    color: #FF9900;
 }
 
 
@@ -43,7 +54,7 @@
 
 
 /* ใช้ Media Queries เพื่อตั้งค่า flex-direction: row สำหรับหน้าจอขนาดใหญ่ min-width: 600px เเละปรับขนาดของภาพเเละตารางตามความเหมาะสม */
-@media (min-width: 600px) {
+@media (min-width: 1200px) {
     .inline-div {
         flex-direction: row; /* Switch to row layout for larger screens */
         align-items: flex-start;

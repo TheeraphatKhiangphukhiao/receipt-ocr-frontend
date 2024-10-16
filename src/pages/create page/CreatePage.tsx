@@ -30,8 +30,8 @@ export default function CreatePage() {
         className="CreatePage_btn_import"
         sx={{
           borderRadius: '15px',
-          border: '3px solid #317AC7',
-          color: '#317AC7',
+          border: '3px solid #FF9900',
+          color: '#FF9900',
           paddingTop: 4,
           paddingBottom: 4,
           paddingLeft: 10,
@@ -39,7 +39,7 @@ export default function CreatePage() {
           textTransform: 'lowercase',
           fontFamily: 'Kanit',
         }}
-        variant="outlined"
+
         component="label"
       >
         <AddPhotoAlternateIcon sx={{ width: 60, height: 60 }} />

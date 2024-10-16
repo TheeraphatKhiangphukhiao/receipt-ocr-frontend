@@ -1,4 +1,4 @@
-import { AppBar, Avatar, Box, Toolbar } from "@mui/material";
+import { AppBar, Avatar, Box, Toolbar, Button } from "@mui/material";
 import { Outlet, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import logo from "../../assets/logo.png";
@@ -23,25 +23,18 @@ export default function Navbar() {
     <>
       {/* Navbar */}
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
-          <Toolbar className="Navbar_toolbar">
+        <AppBar position="fixed" sx={{ backgroundColor: '#292F33'}}>
+          <Toolbar>
             <div className="Navbar_toolbar_content">
               {/* ใช้ Avata แสดง logo ที่อยู่ในเครื่องตัวเอง */}
               <Avatar alt="Logo" src={logo} sx={{ width: 80 }} />
-
-              <button
-                className="Navbar_toolbar_button"
-                onClick={()=>{ navigateToIntroPage(); }}
-              >
-                Intro
-              </button>
-
-              <button
-                className="Navbar_toolbar_button"
-                onClick={()=>{ navigateToCreatePage(); }}
-              >
-                Create
-              </button>
+              
+              <Button color="inherit" sx={{ fontFamily: 'Kanit' }} onClick={()=>{ navigateToIntroPage(); }}>
+                intro
+              </Button>
+              <Button color="inherit" sx={{ fontFamily: 'Kanit' }} onClick={()=>{ navigateToCreatePage(); }}>
+                create
+              </Button>
             </div>
           </Toolbar>
         </AppBar>
